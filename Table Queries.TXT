@@ -1,11 +1,54 @@
-create table plan(plan_id INT(200) NOT NULL AUTO_INCREMENT, plan_name VARCHAR(200),plan_fee VARCHAR(200),plan_duration VARCHAR(200), PRIMARY KEY(plan_id));
-create table timeslot(timeslot_id INT(200) NOT NULL AUTO_INCREMENT, time_slot VARCHAR(200),PRIMARY KEY(plan_id));
-create table branch(branch_id INT(200) NOT NULL AUTO_INCREMENT, branch_city VARCHAR(200), branch_address VARCHAR(200), PRIMARY KEY(branch_id));
-create table trainer(trainer_id INT(200) NOT NULL AUTO_INCREMENT, trianer_name VARCHAR(200), trainer_salary VARCHAR(200), phone_no VARCHAR(200),FOREIGN KEY(branch_id) REFERENCES branch(branch_id));
+CREATE TABLE `branch` (
+ `branch_id` int(200) NOT NULL AUTO_INCREMENT,
+ `branch_city` varchar(200) DEFAULT NULL,
+ `branch_address` varchar(200) DEFAULT NULL,
+ PRIMARY KEY (`branch_id`));
 
 
-create table timeslot(timeslot_id INT(200) NOT NULL AUTO_INCREMENT, time_slot VARCHAR(200),PRIMARY KEY(timeslot_id));
-create table branch(branch_id INT(200) NOT NULL AUTO_INCREMENT, branch_city VARCHAR(200), branch_address VARCHAR(200), PRIMARY KEY(branch_id));
-create table trainer(trainer_id INT(200) NOT NULL AUTO_INCREMENT, trianer_name VARCHAR(200), trainer_salary VARCHAR(200), phone_no VARCHAR(200),PRIMARY KEY(trainer_id),branch_id int(200) not null,timesot_id int(200) not null, CONSTRAINT fk_branch FOREIGN KEY (branch_id) references branch(branch_id),CONSTRAINT fk_timeslot FOREIGN KEY (timesot_id) references timesot(timeslot_id));
+CREATE TABLE `plan` (
+ `plan_id` int(200) NOT NULL AUTO_INCREMENT,
+ `plan_name` varchar(200) DEFAULT NULL,
+ `plan_fee` varchar(200) DEFAULT NULL,
+ `plan_duration` varchar(200) DEFAULT NULL,
+ PRIMARY KEY (`plan_id`));
 
-create table customer(customer_id INT(200) NOT NULL AUTO_INCREMENT,name VARCHAR(200), email VARCHAR(200), username VARCHAR(200), password VARCHAR(200), phone_no VARCHAR(200),FOREIGN KEY(branch_id) REFERENCES branch(branch_id),FOREIGN KEY(trainer_id) REFERENCES trainer(trainer_id), FOREIGN KEY(plan_id) REFERENCES plan(plan_id),FOREIGN KEY(timeslot_id) REFERENCES timeslot(timeslot_id),joining_date DATE NOT NULL ); 
+
+CREATE TABLE `timeslot` (
+ `timeslot_id` int(200) NOT NULL AUTO_INCREMENT,
+ `time_slot` varchar(200) DEFAULT NULL,
+ PRIMARY KEY (`timeslot_id`));
+
+
+CREATE TABLE `trainer` (
+ `trainer_id` int(200) NOT NULL AUTO_INCREMENT,
+ `trianer_name` varchar(200) DEFAULT NULL,
+ `trainer_salary` varchar(200) DEFAULT NULL,
+ `phone_no` varchar(200) DEFAULT NULL,
+ `branch_id` int(200) NOT NULL,
+ `timesot_id` int(200) NOT NULL,
+ PRIMARY KEY (`trainer_id`),
+ KEY `fk_branch` (`branch_id`),
+ KEY `fk_timeslot` (`timesot_id`));
+
+
+
+CREATE TABLE `customer` (
+ `customer_id` int(200) NOT NULL AUTO_INCREMENT,
+ `name` varchar(200) DEFAULT NULL,
+ `email` varchar(200) DEFAULT NULL,
+ `username` varchar(200) DEFAULT NULL,
+ `password` varchar(200) DEFAULT NULL,
+ `age` varchar(200) DEFAULT NULL,
+ `gender` varchar(200) DEFAULT NULL,
+ `phone_no` varchar(200) DEFAULT NULL,
+ `branch_id` int(200) DEFAULT NULL,
+ `trainer_id` int(200) DEFAULT NULL,
+ `plan_id` int(200) DEFAULT NULL,
+ `timeslot_id` int(200) DEFAULT NULL,
+ `joining_date` date NOT NULL,
+ `classes` varchar(500) DEFAULT NULL,
+ PRIMARY KEY (`customer_id`),
+ KEY `fk_branch` (`branch_id`),
+ KEY `fk_trainer` (`trainer_id`),
+ KEY `fk_plan` (`plan_id`),
+ KEY `fk_timeslot` (`timeslot_id`));
