@@ -6,7 +6,7 @@ body {margin:0;
 
 .navbar {
   overflow: hidden;
-  background-color: #333;s
+  background-color: #333;
   position: fixed;
   top: 0;
   width: 100%;
@@ -43,6 +43,16 @@ body {margin:0;
   
 }
 
+#add-trainer-div{
+  border-style: groove;
+  border-color: grey;
+  width: 50%;
+ 
+}
+.remove-button { text-indent: -9000px; 
+text-transform: capitalize;
+background-color: red;
+ }
 </style>
 </head>
 
@@ -56,67 +66,169 @@ include('mysqlconnection.php');
 ?>
 
 <div class="navbar">
-  <a href="welcome.php">Profile</a>
-  <a href="#">Trainer</a>
+  <a href="adminwelcome.php">Admin Panel</a>
+  <!---<a href="#">Trainer</a>
   <a href="#contact">menu3</a>
   <a href="#contact">menu4</a>
   <a href="#contact">menu5</a>
   <a href="#contact">menu6</a>
   <a href="logout.php">Log out</a>
+  ---->
 </div>
 <br>
 <br>
 
+<h1 style="text-align:center;"> Admin Access </h1>
+
 <?php
 include('mysqlconnection.php');
 
-$sql1 = "SELECT * from customer,trainer,branch,timeslot,plan;";
+$sql1 = "SELECT * from trainer";
 
-
+echo "<h2>Trainers</h2>";
 
 if(($result=$conn->query($sql1))->num_rows>0)
         {
-            $row1 = $result->fetch_assoc();
-            $column1 = array_keys($row1) ;
-            foreach($column1 as $column1)
-            {   
-             
-                $_SESSION[$column1] = array();
-
-            }
-
-            while($row2 = $result->fetch_assoc())
-            {
-            /*
-            $_SESSION["trainer_name"]=$row['trianer_name'];
-            $_SESSION["trainer_salary"]=$row['trainer_salary'];
-            $_SESSION["trainer_phoneno"]=$row['phone_no'];
-            $_SESSION["branch_id"]=$row['branch_id'];
-            $branch_id = $_SESSION["branch_id"];
-            $_SESSION["timeslot_id"]=$row['timesot_id'];
-            $timeslot_id = $_SESSION["timeslot_id"];
-            */
-            $row1 = $result->fetch_assoc();
-            $column = array_keys($row2);
-            
-            
+          echo "<table>";
           
-            foreach($column as $column)
-            {   
-                
-                array_push($_SESSION[$column],$row2[$column]);
+          while($row = $result->fetch_assoc())
+          {echo "<tr>";
+            $branch_id = $row['branch_id'];
+            $timeslot_id = $row['timesot_id'];
+            $sql2 = "SELECT * FROM branch,timeslot WHERE branch_id like '$branch_id' and timeslot_id like '$timeslot_id';";
+            if(($result2=$conn->query($sql2))->num_rows>0)
+            {
+              $row2 = $result2->fetch_assoc();
+              $_SESSION["branch_city"]=$row2['branch_city'];
+              $_SESSION["branch_address"]=$row2['branch_address'];
+              $_SESSION["time_slot"]=$row2['time_slot'];
             }
+            else{
+             // header("location:errorpage.php");
+            }
+        
+            echo "<td>".$row['trainer_id']."</td><td>".$row['trianer_name']."</td><td>".$row['trainer_salary']."</td><td>".$_SESSION['branch_address']."</td><td>".$_SESSION['time_slot']."</td><td><form method='POST' action='removetrainer.php'><input type='submit' value='".$row['trainer_id']."' name ='btn' class='remove-button'></form></td>";
 
+            echo "</tr>";
+          }
+          echo "</table>";
+          
 
         }
-        }
+
         else{
-          header("location:errorpage.php");
+          //header("location:errorpage.php");
         }
 
     ?>
 
 
-<h1> Hello <?php echo implode(',',$_SESSION['branch_address']); ?> </h1>
+<br>
+<br>
+<button id="add-trainer">Add Trainer</button>
+<br>
+<br>
+<div id="add-trainer-div">
+<form action="addtrainer.php" method="POST" id="trainer-add">
+<input type = "name" placeholder="name" name="trainer_name"><br>
+<input type = "text" placeholder="salary" name="trainer_salary"><br>
+<input type = "text" placeholder = "phoneno" name="trainer_phoneno"><br>
+<label for="branch">Choose branch/city : *</label><br>
+                        <?php
+                  
+                  //Choose branch
+                  $sql = "Select branch_address,branch_id from branch";
+                  
+                  if(($result = $conn->query($sql))->num_rows>0)
+                    {
+
+                        echo "<select name='branch' class='form-control'name='branch' required>";
+                        echo "<option disabled value>Select an option</option>";
+
+                        while($row = $result->fetch_assoc())
+                        {
+                            //<option  value="1">Mr. Khan</option>
+                            echo "<option  value=".$row['branch_id'].">".$row['branch_address']."</option>";
+                            //echo "<p>".$row['trianer_name']."</p>";
+
+                        }
+                        
+
+                      echo "</select>"  ;
+
+                      
+                    }
+
+
+
+                  ?>
+<br>
+
+
+<label for="membership-plan">Choose a timeslot *</label>
+                  
+                  <?php
+                  /*
+				  <ul style="list-style: none;" required>
+						<li class="radio"><input name="timeslot" value="1"  type="radio" class="user" > <label>Morning </label></li>
+						<li class="radio"><input name="timeslot" value="2"  type="radio" class="user" > <label>Noon </label></li>
+						<li class="radio"><input name="timeslot" value="3"  type="radio" class="user" > <label>Afternoon</label></li>
+						<li class="radio"><input name="timeslot" value="4"  type="radio" class="user" > <label>Evening</label></li>
+                      </ul>
+                     */
+                    
+                    
+                  
+                    //Choose branch
+                    $sql = "Select timeslot_id,time_slot from timeslot";
+                    
+                    if(($result = $conn->query($sql))->num_rows>0)
+                      {
+                        
+                       echo "<ul style='list-style: none;' required>";
+                          
+  
+                          while($row = $result->fetch_assoc())
+                          {
+
+                            echo "<li class='radio'><input name='timeslot' value=".$row['timeslot_id']."  type='radio' class='user' > <label>".$row['time_slot']."</label></li>";
+                              
+                              //echo "<option  value=".$row['trainer_id'].">".$row['trianer_name']."</option>";
+                              
+  
+                          }
+                          
+  
+                        echo "</ul>"  ;
+  
+                        
+                      }
+  
+  
+  
+            
+
+
+                ?>
+
+<br>
+<br>
+<input type="submit" value="create trainer">
+</form>
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+$('#add-trainer-div').hide();
+$('#add-trainer').on('click',function(){
+
+$('#add-trainer-div').toggle();
+
+});
+
+</script>
 
 </body>
