@@ -1,6 +1,4 @@
 
-<!DOCTYPE html>
-<html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -9,7 +7,7 @@ body {margin:0;
 
 .navbar {
   overflow: hidden;
-  background-color: #333;s
+  background-color: #333;
   position: fixed;
   top: 0;
   width: 100%;
@@ -46,47 +44,45 @@ body {margin:0;
   
 }
 
+#add-trainer-div{
+  border-style: groove;
+  border-color: grey;
+  width: 50%;
+ 
+}
+.remove-button { text-indent: -9000px; 
+text-transform: capitalize;
+background-color: red;
+ }
 </style>
 </head>
-<body stye="background-color: rgb(171, 178, 185) !important;">
+<body>
 
 <div class="navbar">
-  <a href="welcome.php">Profile</a>
-  <a href="user-trainer.php">Trainer</a>
+  <a href="adminwelcome.php">Admin Panel</a>
+  <!---<a href="#">Trainer</a>
   <a href="#contact">menu3</a>
   <a href="#contact">menu4</a>
   <a href="#contact">menu5</a>
   <a href="#contact">menu6</a>
-  <a href="logout.php">Log out</a>
+  ---->
+  <a href="admin-logout.php">Log out</a>
+
 </div>
 <br>
 <br>
-
-
-
-
-
-
+<br>
+<br>
 
 <?php
 session_start();
-include("mysqlconnection.php");
-$username = $_SESSION['username'];
-$id = $_SESSION["customer_id"];
-$sql = "SELECT * from customer where customer_id like '$id';";
+include('mysqlconnection.php');
+$customer_id = $_GET['data'];
+
+$sql = "SELECT * from customer where customer_id like '$customer_id';";
 if(($result=$conn->query($sql))->num_rows>0)
         {
             $row = $result->fetch_assoc();
-            /*
-            $customer_id = $row['customer_id'];
-            $username = $row['username'];
-            $password = $row['password'];
-            $_SESSION['customer_id'] = $customer_id;
-            $_SESSION['username'] = $username;
-            $_SESSION['password'] = $password;
-            echo "<h1>Done</h1>";
-            header("location: welcome.php");
-            */
             $_SESSION["trainer_id"]=$row['trainer_id'];
             $_SESSION["customer_name"]=$row['name'];
             $_SESSION["customer_email"]=$row['email'];
@@ -104,7 +100,6 @@ if(($result=$conn->query($sql))->num_rows>0)
     else{
         header("location:errorpage.php");
     }
-
 ?>
 
 <br>
@@ -159,8 +154,26 @@ echo $_SESSION['customer_phoneno'];
 </p>
 <br>
 <br>
-</div>
 
+<p>Joing Date: <?php
+
+echo $_SESSION['joining_date'];
+
+?>
+</p>
+<br>
+<br>
+
+<p>Classes: <?php
+
+echo $_SESSION['classes'];
+
+?>
+</p>
+<br>
+<br>
+
+</div>
 
 
 

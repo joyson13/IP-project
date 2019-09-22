@@ -62,6 +62,11 @@ background-color: red;
 <?php   
 session_start();
 include('mysqlconnection.php');
+if(!$_SESSION['AdminLogIn'])
+{
+  header('location:errorpage.php');
+  session_destroy();
+}
 
 ?>
 
@@ -72,8 +77,9 @@ include('mysqlconnection.php');
   <a href="#contact">menu4</a>
   <a href="#contact">menu5</a>
   <a href="#contact">menu6</a>
-  <a href="logout.php">Log out</a>
   ---->
+  <a href="logout.php">Log out</a>
+  
 </div>
 <br>
 <br>
@@ -106,8 +112,8 @@ if(($result=$conn->query($sql1))->num_rows>0)
             else{
              // header("location:errorpage.php");
             }
-        
-            echo "<td>".$row['trainer_id']."</td><td>".$row['trianer_name']."</td><td>".$row['trainer_salary']."</td><td>".$_SESSION['branch_address']."</td><td>".$_SESSION['time_slot']."</td><td><form method='POST' action='removetrainer.php'><input type='submit' value='".$row['trainer_id']."' name ='btn' class='remove-button'></form></td>";
+            $trainer_id = $row['trainer_id'];
+            echo "<td>".$row['trainer_id']."</td><td><a href='admin-trainerprofile.php?data1=".$trainer_id."'>".$row['trianer_name']."</a></td><td>".$row['trainer_salary']."</td><td>".$_SESSION['branch_address']."</td><td>".$_SESSION['time_slot']."</td><td><form method='POST' action='removetrainer.php'><input type='submit' value='".$row['trainer_id']."' name ='btn' class='remove-button'></form></td>";
 
             echo "</tr>";
           }
