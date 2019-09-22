@@ -56,11 +56,14 @@ body {margin:0;
 <div class="navbar">
   <a href="welcome.php">Profile</a>
   <a href="user-trainer.php">Trainer</a>
-  <a href="#contact">menu3</a>
+  <a href="user-routine.php">Routine</a>
+  <!---
   <a href="#contact">menu4</a>
   <a href="#contact">menu5</a>
   <a href="#contact">menu6</a>
+  --->
   <a href="logout.php">Log out</a>
+  
 </div>
 <br>
 <br>

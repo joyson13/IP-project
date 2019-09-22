@@ -59,7 +59,7 @@ body {margin:0;
 <div class="navbar">
   <a href="trainerwelcome.php">Profile</a>
   <a href="trainer-users.php">Users</a>
-  <a href="#contact">menu3</a>
+  <a href="trainer-feedback.php">Feedbacks</a>
   <a href="#contact">menu4</a>
   <a href="#contact">menu5</a>
   <a href="#contact">menu6</a>

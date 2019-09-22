@@ -12,7 +12,7 @@ $customer_id = (int)$_SESSION['customer_id'];
 echo "<h1>".$trainer_id."</h1>";
 echo "<h1>".$trainer_feedback."</h1>";
 
-$sql = "INSERT INTO customer_trainer_feedback(customer_id,trainer_id,feedback,trainer_rating) VALUES ('$customer_id','$trainer_id','$trainer_feedback','$trainer_raiting');";
+$sql = "INSERT INTO customer_trainer_feedback(customer_id,trainer_id,feedback,trainer_rating,feedback_date) VALUES ('$customer_id','$trainer_id','$trainer_feedback','$trainer_raiting',NOW());";
 
 if($conn->query($sql)===TRUE)
 {
