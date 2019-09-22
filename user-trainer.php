@@ -12,7 +12,7 @@ body {margin:0;
 
 .navbar {
   overflow: hidden;
-  background-color: #333;s
+  background-color: #333;
   position: fixed;
   top: 0;
   width: 100%;
@@ -153,5 +153,46 @@ echo $_SESSION['time_slot'];
 <br>
 <br>
 </div>
+<br>
+<br>
+<button id="user-feedback">Give Feedback</button>
+
+<div id="user-feedback-div">
+<h2><?php echo $_SESSION['trainer_name'] ?>  </h2>
+<label> Give your rating out of 5 </label>
+<form method='POST' action='user-trainer-feedback.php' id="trainer-feedback-form">
+<?php
+for($x=1;$x<=5;$x++)
+{
+echo "<input type='radio' name='trainer-ratings' value=".$x.">".$x."<br>";
+}
+?>
+
+<label> Give your feed back here </label>
+<br>
+<br>
+<textarea name="feedback-text" form="trainer-feedback-form" rows="10" cols="50"></textarea>
+<br>
+<br>
+<input type="submit" value="Submit Feedback">
+</form>
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+$('#user-feedback-div').hide();
+$('#user-feedback').on('click',function(){
+
+$('#user-feedback-div').toggle();
+
+});
+
+</script>
+
+
+
 
     </body>
