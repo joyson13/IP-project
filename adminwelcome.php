@@ -72,7 +72,8 @@ if(!$_SESSION['AdminLogIn'])
 
 <div class="navbar">
   <a href="adminwelcome.php">Admin Panel</a>
-  <!---<a href="#">Trainer</a>
+  <a href="admin-branches.php">Branches</a>
+  <!----
   <a href="#contact">menu3</a>
   <a href="#contact">menu4</a>
   <a href="#contact">menu5</a>
@@ -124,6 +125,7 @@ if(($result=$conn->query($sql1))->num_rows>0)
 
         else{
           //header("location:errorpage.php");
+          echo "<h2>No trainers</h2>";
         }
 
     ?>
@@ -137,6 +139,8 @@ if(($result=$conn->query($sql1))->num_rows>0)
 <div id="add-trainer-div">
 <form action="addtrainer.php" method="POST" id="trainer-add">
 <input type = "name" placeholder="name" name="trainer_name"><br>
+<input type = "name" placeholder="username" name="trainer_username"><br>
+<input type = "name" placeholder="password" name="trainer_password"><br>
 <input type = "text" placeholder="salary" name="trainer_salary"><br>
 <input type = "text" placeholder = "phoneno" name="trainer_phoneno"><br>
 <label for="branch">Choose branch/city : *</label><br>

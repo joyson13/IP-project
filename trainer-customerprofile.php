@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,11 +47,15 @@ body {margin:0;
 
 </style>
 </head>
-<body stye="background-color: rgb(171, 178, 185) !important;">
+
+
+
+
+<body>
 
 <div class="navbar">
-  <a href="welcome.php">Profile</a>
-  <a href="user-trainer.php">Trainer</a>
+  <a href="trainerwelcome.php">Profile</a>
+  <a href="trainer-users.php">Users</a>
   <a href="#contact">menu3</a>
   <a href="#contact">menu4</a>
   <a href="#contact">menu5</a>
@@ -62,31 +65,21 @@ body {margin:0;
 <br>
 <br>
 
-
-
-
-
-
-
 <?php
 session_start();
-include("mysqlconnection.php");
-$username = $_SESSION['username'];
-$id = $_SESSION["customer_id"];
-$sql = "SELECT * from customer where customer_id like '$id';";
+if(!$_SESSION['IsLogged'])
+{
+    session_destroy();
+    header("location:errorpage.php");
+}
+
+
+include('mysqlconnection.php');
+$customer_id = $_GET['data1'];
+$sql = "SELECT * from customer where customer_id like '$customer_id';";
 if(($result=$conn->query($sql))->num_rows>0)
         {
             $row = $result->fetch_assoc();
-            /*
-            $customer_id = $row['customer_id'];
-            $username = $row['username'];
-            $password = $row['password'];
-            $_SESSION['customer_id'] = $customer_id;
-            $_SESSION['username'] = $username;
-            $_SESSION['password'] = $password;
-            echo "<h1>Done</h1>";
-            header("location: welcome.php");
-            */
             $_SESSION["trainer_id"]=$row['trainer_id'];
             $_SESSION["customer_name"]=$row['name'];
             $_SESSION["customer_email"]=$row['email'];
@@ -104,7 +97,6 @@ if(($result=$conn->query($sql))->num_rows>0)
     else{
         header("location:errorpage.php");
     }
-
 ?>
 
 <br>
@@ -159,62 +151,33 @@ echo $_SESSION['customer_phoneno'];
 </p>
 <br>
 <br>
-</div>
 
-<br>
-<br>
-<button id="user-facility-feedback">Give Feedback For Faciities</button>
+<p>Joing Date: <?php
 
-<div id="user-facility-feedback-div">
-<h2><?php 
-/*
-$branch_id = $_SESSION['branch_id'];
-$sql = "SELECT * FROM branch where branch_id like '$branch_id';";
-if(($result=$conn->query($sql))->num_rows>0)
-{
+echo $_SESSION['joining_date'];
 
-$row = $result->fetch_assoc();
-
-$_SESSION['branch_address'] = $row['branch_address'];
-$_SESSION['branch_city'] = $row['branch_city'];
-
-echo $_SESSION['branch_address'].", ".$_SESSION['branch_city'];
-}
-*/
-include('branch_name.php');
-?></h2>
-<label> Give your rating out of 5 </label>
-<form method='POST' action='user-facility-feedback.php' id="facility-feedback-form">
-<?php
-for($x=1;$x<=5;$x++)
-{
-echo "<input type='radio' name='facility-ratings' value=".$x.">".$x."<br>";
-}
 ?>
+</p>
+<br>
+<br>
 
-<label> Give your feed back here </label>
+<p>Classes: <?php
+
+echo $_SESSION['classes'];
+
+?>
+</p>
 <br>
 <br>
-<textarea name="feedback-text" form="facility-feedback-form" rows="10" cols="50"></textarea>
-<br>
-<br>
-<input type="submit" value="Submit Feedback">
-</form>
+
 </div>
 
 
 
+</body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script>
-$('#user-facility-feedback-div').hide();
-$('#user-facility-feedback').on('click',function(){
 
-$('#user-facility-feedback-div').toggle();
 
-});
-
-</script>
 
 
 </body>
