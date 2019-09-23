@@ -1,8 +1,13 @@
+
+
+
+
 CREATE TABLE `branch` (
  `branch_id` int(200) NOT NULL AUTO_INCREMENT,
  `branch_city` varchar(200) DEFAULT NULL,
  `branch_address` varchar(200) DEFAULT NULL,
- PRIMARY KEY (`branch_id`));
+ PRIMARY KEY (`branch_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1
 
 
 CREATE TABLE `plan` (
@@ -10,13 +15,18 @@ CREATE TABLE `plan` (
  `plan_name` varchar(200) DEFAULT NULL,
  `plan_fee` varchar(200) DEFAULT NULL,
  `plan_duration` varchar(200) DEFAULT NULL,
- PRIMARY KEY (`plan_id`));
+ PRIMARY KEY (`plan_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1
+
+
 
 
 CREATE TABLE `timeslot` (
  `timeslot_id` int(200) NOT NULL AUTO_INCREMENT,
  `time_slot` varchar(200) DEFAULT NULL,
- PRIMARY KEY (`timeslot_id`));
+ PRIMARY KEY (`timeslot_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1
+
 
 
 CREATE TABLE `trainer` (
@@ -26,9 +36,13 @@ CREATE TABLE `trainer` (
  `phone_no` varchar(200) DEFAULT NULL,
  `branch_id` int(200) NOT NULL,
  `timesot_id` int(200) NOT NULL,
+ `username` varchar(200) NOT NULL,
+ `password` varchar(200) NOT NULL,
  PRIMARY KEY (`trainer_id`),
  KEY `fk_branch` (`branch_id`),
- KEY `fk_timeslot` (`timesot_id`));
+ KEY `fk_timeslot` (`timesot_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1
+
 
 
 
@@ -51,4 +65,56 @@ CREATE TABLE `customer` (
  KEY `fk_branch` (`branch_id`),
  KEY `fk_trainer` (`trainer_id`),
  KEY `fk_plan` (`plan_id`),
- KEY `fk_timeslot` (`timeslot_id`));
+ KEY `fk_timeslot` (`timeslot_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1	
+
+
+CREATE TABLE `trainer_login` (
+ `tlogin_id` int(200) NOT NULL AUTO_INCREMENT,
+ `trainer_id` int(200) NOT NULL,
+ `trainer_name` varchar(200) NOT NULL,
+ `password` varchar(200) NOT NULL,
+ PRIMARY KEY (`tlogin_id`),
+ KEY `fk_trainer` (`trainer_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1
+
+CREATE TABLE `customer_trainer_feedback` (
+ `c_t_id` int(200) NOT NULL AUTO_INCREMENT,
+ `customer_id` int(200) NOT NULL,
+ `trainer_id` int(200) NOT NULL,
+ `feedback` text NOT NULL,
+ `trainer_rating` int(200) DEFAULT NULL,
+ `feedback_date` date DEFAULT NULL,
+ PRIMARY KEY (`c_t_id`),
+ KEY `fk_trainer` (`trainer_id`),
+ KEY `fk_customer` (`customer_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1
+
+CREATE TABLE `customer_facility_feedback` (
+ `c_f_id` int(200) NOT NULL AUTO_INCREMENT,
+ `customer_id` int(200) NOT NULL,
+ `branch_id` int(200) NOT NULL,
+ `feedback` text NOT NULL,
+ `facility_rating` int(200) DEFAULT NULL,
+ `feed_back_date` date DEFAULT NULL,
+ PRIMARY KEY (`c_f_id`),
+ KEY `fk_branch` (`branch_id`),
+ KEY `fk_customer` (`customer_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1
+
+CREATE TABLE `customer_routine` (
+ `c_r_id` int(200) NOT NULL AUTO_INCREMENT,
+ `customer_id` int(200) NOT NULL,
+ `trainer_id` int(200) NOT NULL,
+ `routine` text NOT NULL,
+ `routine_date` date DEFAULT NULL,
+ PRIMARY KEY (`c_r_id`),
+ KEY `fk_trainer` (`trainer_id`),
+ KEY `fk_customer` (`customer_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1
+
+CREATE TABLE `adminlog` (
+ `username` varchar(200) NOT NULL,
+ `password` varchar(200) NOT NULL,
+ PRIMARY KEY (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
