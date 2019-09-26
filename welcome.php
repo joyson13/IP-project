@@ -107,6 +107,41 @@ if(($result=$conn->query($sql))->num_rows>0)
     else{
         header("location:errorpage.php");
     }
+   
+    $sql2 = "SELECT * FROM customer_payment where customer_id like '$id';";
+
+    if(($result2=$conn->query($sql2))->num_rows>0)
+    {
+        $row2 = $result2->fetch_assoc();
+        $payment_id = $row2['payment_id'];
+        $payment_date = $row2['payment_date'];
+      
+    }
+    else{
+      echo "ERROR";
+    }
+    $plan_id = $_SESSION['plan_id'];
+    $sql3 = "SELECT * FROM plan where plan_id like '$plan_id'";
+
+    if(($result=$conn->query($sql3))->num_rows>0)
+    {
+        $row3 = $result->fetch_assoc();
+        $_SESSION['plan_name'] = $row3['plan_name'];
+        $_SESSION['plan_fee'] = $row3['plan_fee'];
+        $_SESSION['plan_duration'] = $row3['plan_duration'];
+        
+    }
+
+    $plan_duration = $_SESSION['plan_duration'];
+
+
+$expiry_date = date('Y-m-d', strtotime($payment_date.'+'.$plan_duration.' month'));
+$todays_date = date('Y-m-d');
+
+if($todays_date==$expiry_date)
+{
+  header("location:renewmembership.php");
+}
 
 ?>
 

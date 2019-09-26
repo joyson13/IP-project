@@ -21,12 +21,14 @@ $sql = "insert into customer(name,email,username,password,age,gender,phone_no,br
 
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    
+    header('location:paymentinfo.php');
+
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-echo "<h1>Account is Successfully created</h1>"
+
 
 ?>
 

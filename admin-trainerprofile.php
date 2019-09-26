@@ -142,7 +142,7 @@ if(($result=$conn->query($sql1))->num_rows>0)
   <br>
 <div class = "profile">
 <h1>
-<a href="admin-trainerprofile.php">
+<a href="admin-trainerprofile.php?data1=<?php echo $_SESSION['trainer_id']?>">
  <?php
 
 echo $_SESSION['trainer_name'];
