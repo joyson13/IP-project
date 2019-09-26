@@ -118,3 +118,13 @@ CREATE TABLE `adminlog` (
  `password` varchar(200) NOT NULL,
  PRIMARY KEY (`username`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1
+
+CREATE TABLE `customer_payment` (
+ `payment_id` int(200) NOT NULL AUTO_INCREMENT,
+ `customer_id` int(200) NOT NULL,
+ `plan_id` int(200) NOT NULL,
+ `payment_date` date DEFAULT NULL,
+ PRIMARY KEY (`payment_id`),
+ KEY `fk_plan` (`plan_id`),
+ KEY `fk_customer` (`customer_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1
