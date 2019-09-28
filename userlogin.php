@@ -40,7 +40,7 @@
 	          <li class="nav-item"><a href="site.php#about-section" class="nav-link"><span>About</span></a></li>
 	          <li class="nav-item"><a href="site.php#coaches-section" class="nav-link"><span>Coaches</span></a></li>
               <li class="nav-item"><a href="site.php#blog-section" class="nav-link"><span>Blog</span></a></li>
-              <li class="nav-item"><a href="login.php" class="nav-link"><span>Login</span></a></li>
+              <li class="nav-item"><a href="Registration1.php" class="nav-link"><span>Register</span></a></li>
 	          <li class="nav-item"><a href="site.php#contact-section" class="nav-link"><span>Contact</span></a></li>
 	        </ul>
 	      </div>
@@ -51,38 +51,29 @@
 		<div class="container">
 			<div class="row justify-content-center mb-5 pb-3">
 			<div class="col-md-7 heading-section text-center ftco-animate">
-			  <span class="subheading" style="color: #42c0fb;"><strong>Registeration I</strong></span>
-			  <h2 class="mb-4">Sign up</h2>
-			  <p>Already a member? <a href="login.php" style="color: #42c0fb;">Login</a></p>
+			  <span class="subheading" style="color: #42c0fb;"><strong>Login</strong></span>
+			  <h2 class="mb-4">Sign in</h2>
+			  <p>Not a member? <a href="Registration1.php" style="color: #42c0fb;">Register now</a></p>
 			</div>
 		  </div>
   
 		  <div class="row block-9">
 			<div class="col-md-7 order-md-last d-flex">
-				<form action="DynamicReg1.php" method="POST" class="bg-light p-4 p-md-5 contact-form">
+			  <form action="testlogin.php" method="POST" class="bg-light p-4 p-md-5 contact-form">
 			    <div class="form-group">
-				  <label for="name">Name *</label>
-				  <input type="name" name="name" class="form-control" required>
+                  <label for="role">Role</label>
+				  <input type="role" name="role" class="form-control" value="Member" readonly>
 				</div>
-				<div class="form-group">
-					<label for="username">Username *</label>
-					<input type="username" name="username" class="form-control" required>
-				</div>
-				<div class="form-group">
-                  <label for="email">Email *</label>
-				  <input type="email" name="email" class="form-control" required>
+                <div class="form-group">
+                  <label for="username">Username *</label>
+				  <input type="name" name="username" class="form-control">
 				</div>
 				<div class="form-group">
                   <label for="password">Password *</label>
-				  <input type="password" name="password" class="form-control" required>
+				  <input type="password" name="password" class="form-control">
 				</div>
 				<div class="form-group">
-				  <label for="password">Confirm Password *</label>
-				  <input type="password" name="password-confirm" class="form-control" required>
-				</div>
-				
-				<div class="form-group">
-				  <button type="submit" formaction="DynamicReg1.php" class="btn btn-primary py-3 px-5" style="background-color: #42c0fb; border-color: #42cofb;">Continue</button>
+				  <button type="submit" formaction="testlogin.php" class="btn btn-primary py-3 px-5" style="background-color: #42c0fb; border-color: #42c0fb;">Login</button>
 				</div>
 			  </form>
 			

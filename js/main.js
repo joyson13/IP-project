@@ -294,8 +294,29 @@
   });
 
 
+// Nice Select
+$('select').niceSelect();
 
-
+// Bmi
+$("#bmi").submit(function(e) {
+	e.preventDefault();
+	var weight = $("[name='weight']").val();
+	var height = $("[name='height']").val() * 30.48;
+	if (weight > 0 && height > 0) {
+		var finalBmi = (weight / (height * height)) * 10000;
+		$("#dopeBMI").val(finalBmi);
+		if (finalBmi < 18.5) {  
+			$("#meaning").val("You are underweight.");
+		}
+		if (finalBmi > 18.5 && finalBmi < 24.9) {
+			$("#meaning").val("You are normal.");
+		}
+		if (finalBmi > 24.9 && finalBmi < 29.99) {
+			$("#meaning").val("You are overweight.");
+		}
+	} else {
+		$("#meaning").val("You are obese.");
+		}   
+});
 
 })(jQuery);
-

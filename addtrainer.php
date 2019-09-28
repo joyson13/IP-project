@@ -10,7 +10,7 @@ $trainer_phoneno = $_POST['trainer_phoneno'];
 $timeslot_id = (int)$_POST['timeslot'];
 $trainer_username = $_POST['trainer_username'];
 $trainer_password = $_POST['trainer_password'];
-$sql = "INSERT INTO TRAINER(trianer_name,trainer_salary,phone_no,branch_id,timesot_id,username,password) values('$trainer_name','$trainer_salary','$trainer_phoneno','$branch_id','$timeslot_id','$trainer_username','$trainer_password');";
+$sql = "INSERT INTO trainer(trianer_name,trainer_salary,phone_no,branch_id,timesot_id,usename,password) values('$trainer_name','$trainer_salary','$trainer_phoneno','$branch_id','$timeslot_id','$trainer_username','$trainer_password');";
 echo "<h1>Here</h1>";
 if($conn->query($sql)===TRUE)
 {
