@@ -198,7 +198,7 @@ $_SESSION['username'] = $_POST['username']
                               //echo "<option  value=".$row['trainer_id'].">".$row['trianer_name']."</option>";
                               
 
-                              echo "<li class='radio'><input name='plan' value=".$row['plan_id']."  type='radio' class='userRatings' > <label>".$row['plan_duration']." month &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs 300/-</label></li>";
+                              echo "<li class='radio'><input name='plan' value=".$row['plan_id']."  type='radio' class='userRatings' > <label>".$row['plan_duration']." month &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs ".$row['plan_fee']."/-</label></li>";
   
                           }
                           
