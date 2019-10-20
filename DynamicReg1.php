@@ -1,3 +1,10 @@
+
+<head>
+
+
+</head>
+
+
 <body>
 
 <?php include("mysqlconnection.php"); 
@@ -12,7 +19,7 @@ $_SESSION['username'] = $_POST['username']
 ?>
 
 
-<form action="submit2.php" Method = "POST" class="bg-light p-4 p-md-5 contact-form">
+<form action="submit2.php" Method = "POST" class="bg-light p-4 p-md-5 contact-form" id="user-registration-form">
 
 <div class="form-group">
                   <label for="gender">Choose gender *</label>
@@ -42,7 +49,7 @@ $_SESSION['username'] = $_POST['username']
                   if(($result = $conn->query($sql))->num_rows>0)
                     {
 
-                        echo "<select name='branch' class='form-control'name='branch' required>";
+                        echo "<select name='branch' class='form-control' name='branch' id='form-control-branch' required>";
                         echo "<option disabled value>Select an option</option>";
 
                         while($row = $result->fetch_assoc())
@@ -95,8 +102,8 @@ $_SESSION['username'] = $_POST['username']
                           while($row = $result->fetch_assoc())
                           {
 
-                            echo "<li class='radio'><input name='timeslot' value=".$row['timeslot_id']."  type='radio' class='user' > <label>".$row['time_slot']."</label></li>";
-                              
+                            echo "<li class='radio'><input name='timeslot' value=".$row['timeslot_id']."  type='radio' class='user' id='form-control-timeslot' > <label>".$row['time_slot']."</label></li>";
+                            
                               //echo "<option  value=".$row['trainer_id'].">".$row['trianer_name']."</option>";
                               
   
@@ -198,7 +205,7 @@ $_SESSION['username'] = $_POST['username']
                               //echo "<option  value=".$row['trainer_id'].">".$row['trianer_name']."</option>";
                               
 
-                              echo "<li class='radio'><input name='plan' value=".$row['plan_id']."  type='radio' class='userRatings' > <label>".$row['plan_duration']." month &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs ".$row['plan_fee']."/-</label></li>";
+                              echo "<li class='radio'><input name='plan' value=".$row['plan_id']."  type='radio' class='userRatings'  > <label>".$row['plan_duration']." month &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$row['plan_fee']."/-</label></li>";
   
                           }
                           
@@ -216,7 +223,14 @@ $_SESSION['username'] = $_POST['username']
 
 				
 				?>
-				</div>
+        </div>
+        
+        <label> Get Trainer </label>
+        <input type="button" onclick="gettrainer()"> Get Trainer </button>
+
+        <div id="trainer-div">
+
+        </div>
 
 <!-----------SUBMIT BUTTON--------------------------------------------------------------------------------------->$GLOBALS
 
@@ -228,4 +242,36 @@ $_SESSION['username'] = $_POST['username']
 
 
 </form>
+
+<script>
+
+
+function gettrainer()
+{
+	var branch=document.getElementById('form-control-branch').value;
+	var timeslot=document.getElementById('form-control-timeslot').value;
+	var obj=new XMLHttpRequest();
+	var url="trainer.php?branch="+branch+"&timeslot="+timeslot;
+
+	obj.onreadystatechange=function()
+	{
+		if(this.readyState == 4 && this.status == 200)
+		{
+			var s=this.responseText;
+			var t=this.responseText;
+			document.getElementById('trainer-div').innerHTML = s;
+			
+
+		}
+	};
+	obj.open("GET",url,true);
+	obj.open("GET",url,true);
+	obj.send();
+}
+
+
+
+</script>
+
+
 </body>
