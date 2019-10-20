@@ -127,40 +127,6 @@ $_SESSION['username'] = $_POST['username']
 
 
 
-                <!--------------------------TRAINER------------------------------------------------------------>
-
-                <div class="form-group">
-				  <label for="currentPos">Choose your trainer*</label><br>
-                  <?php
-                  
-                  //Choose branch
-                  $sql = "Select trianer_name,trainer_id from trainer";
-                  
-                  if(($result = $conn->query($sql))->num_rows>0)
-                    {
-
-                        echo "<select name='trainer' class='form-control' required>";
-                        echo "<option disabled value>Select an option</option>";
-
-                        while($row = $result->fetch_assoc())
-                        {
-                            //<option  value="1">Mr. Khan</option>
-                            echo "<option  value=".$row['trainer_id'].">".$row['trianer_name']."</option>";
-                            //echo "<p>".$row['trianer_name']."</p>";
-
-                        }
-                        
-
-                      echo "</select>"  ;
-
-                      
-                    }
-
-
-
-                  ?>
-				  </label>
-                </div>
                 
                 <!---CLASSES------------------------------------------------>
                 <div class="form-group">
