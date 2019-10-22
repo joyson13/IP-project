@@ -297,7 +297,7 @@
 // Nice Select
 $('select').niceSelect();
 
-Bmi
+// Bmi
 $("#bmi").submit(function(e) {
 	e.preventDefault();
 	var weight = $("[name='weight']").val();
