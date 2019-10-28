@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style1.css">
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
@@ -38,7 +39,11 @@
 	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
 			  <li class="nav-item"><a href="#coaches-section" class="nav-link"><span>Coaches</span></a></li>
 			  <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Blog</span></a></li>
-	          <li class="nav-item"><a href="login.php" class="nav-link"><span>Login</span></a></li>
+	          <li class="nav-item"><a href="login.php" class="nav-link"><span>Login &#9662;</span></a><ul class="dropdown">
+                <li><a href="userlogin.php">Users</a></li>
+                <li><a href="trainer-login.php">Trainers</a></li>
+                <li><a href="AdminLogin">Admin</a></li>
+            </ul></li>
 			  <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
 			  
 	        </ul>
@@ -323,6 +328,7 @@
                             </div>
                             <div class="bmi-btn pt-4">
                                 <button type="submit" name="verify" class="btn btn-primary px-4 py-3" style="background-color: #42c0fb;" onclick=calculateBMI()>Calculate</button>
+                                <br>
                             </div>
                             <div class="form-group">
                                 <input type="text" name="result" id="result" class="form-control" style="width : 50%;">
@@ -330,8 +336,8 @@
                         </form>
                         <script>
                           function calculateBMI() {
-                            var weight = document.getElementById('weight');
-                            var height = document.getElementById('height'); * 30.48;
+                            var weight = document.getElementById('weight').value;
+                            var height = document.getElementById('height').value * 30.48;
                             var result = document.getElementById('result');
                             if (weight > 0 && height > 0) {
                               var finalBmi = (weight / (height * height)) * 10000;
@@ -351,26 +357,7 @@
 
                           }
                           </script>
-                        <!-- <?php
-                $weight = $_GET['weight'];
-                $height = $_GET['height'] * 30.48;
-
-                if ($weight > 0 && $height > 0) {
-                  		$finalBmi = ($weight / ($height * $height)) * 10000;
-                  		echo "Your BMI is $finalBmi <br>";
-                  		if ($finalBmi < 18.5) {  
-                  			echo ("You are underweight.");
-                  		}
-                  		if ($finalBmi > 18.5 && $finalBmi < 24.9) {
-                  			echo ("You are normal.");
-                  		}
-                  		if ($finalBmi > 24.9 && $finalBmi < 29.99) {
-                  			echo ("You are overweight.");
-                  		}
-                  	} else {
-                  		echo ("You are obese.");
-                  		}   
-                ?> -->
+                        
                     </div>
                 </div>
                 <div class="col-lg-6 align-self-center mt-5 mt-lg-0">
@@ -830,7 +817,6 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdNCH_q2D6gJkUcQNp0GYf2SLs1yx04DA&sensor=true"></script>
   <script src="js/google-map.js"></script>
   
-  <script src="js/main.js"></script>
-    
+  <script src="js/main.js"></script>    
   </body>
 </html>
