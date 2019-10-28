@@ -1,0 +1,144 @@
+<html>
+<head>
+<title>show pasword final</title>
+</head>
+<body>
+
+<form  action="valid2.php" method="POST" onSubmit="return validate(this)" id="yoyo">
+	<table>
+	
+<p>FIRST NAME</p>
+<input type="text" name="firstname" id="first" placeholder="Please enter your first name">
+<p id="f" style="color: red;"></p><br>
+
+<p>LAST NAME</p>
+<input type="text" name="lastname" id="last" placeholder="Please enter your last name">
+<p id="m" style="color: red;"></p><br> 
+
+<p>AGE</p>
+<input type="number" name="age" id="age" placeholder="Please enter your age">
+<p id="n" style="color: red;"></p><br>
+
+<p>EMAIL</p>
+<input type="text" name="email" id="email" placeholder="Please enter your email">
+<p id="t" style="color: red;"></p><br>
+
+<p>USERNAME</p>
+<input type="text" name="username" id="username" placeholder="Please enter your username">
+<p id="mt" style="color: red;"></p><br>
+
+<p>PASSWORD</p>
+<input type="password" name="passwords"  id="passwords" placeholder="Please enter your password">
+
+<p id="mnt" style="color: red;"></p><br>
+
+Show password<input type="checkbox" id="check" onClick="showpass();">
+<p id="show"></p>
+<br><br>
+<p>CONFIRM PASSWORD</p>
+<input type="password" name="confirm password"  id="confirmpassword" placeholder="Please enter your password">
+<p id="mntt" style="color: red;"></p><br>
+<br> 
+
+
+<input type="button" value="submit" onClick="valid();">
+
+
+<script type="text/javascript">
+
+function valid()
+{
+
+first=document.getElementById("first").value;
+
+if(first=="")
+{
+	document.getElementById("f").innerHTML="First name is mandatory";
+}
+
+
+
+last=document.getElementById("last").value;
+
+if(last=="")
+{
+	document.getElementById("m").innerHTML="last name is mandatory\n";
+}
+
+age=document.getElementById("age").value;
+if(age=="")
+{
+document.getElementById("n").innerHTML="Age is mandatory\n";
+}
+
+else if(age<=18 || age>=40)
+{
+document.getElementById("n").innerHTML="Age must be beetwen 18-40\n";
+}
+email=document.getElementById("email").value;
+if(email=="")
+{
+document.getElementById("t").innerHTML="Email is mandatory";
+}
+
+else if(!(email.indexOf(".")>0 && email.indexOf("@")>0))
+{
+document.getElementById("t").innerHTML="Email address invalid";
+}
+username=document.getElementById("username").value;
+if(username=="")
+{
+document.getElementById("mt").innerHTML="Username is mandatory\n";
+}
+else if(username.length<6)
+{
+document.getElementById("mt").innerHTML="Username must be at least 6 characters\n";
+}
+
+
+
+passwords=document.getElementById("passwords").value;
+
+if(passwords=="")
+{
+document.getElementById("mnt").innerHTML="Password is mandatory\n";
+}
+else if(passwords!=/[^0-9a-zA-Z_-]/&& passwords.length<8)
+{  
+document.getElementById("mnt").innerHTML="Password must include One each of A-Z, a-z, 0-9 characters and should be larger then 8 chars\n";
+}
+
+
+confirmpassword=document.getElementById("confirmpassword").value;
+if(confirmpassword=="")
+{
+document.getElementById("mntt").innerHTML="it is mandatory to confirm your password\n";
+}
+else if(confirmpassword!=passwords)
+{  
+document.getElementById("mntt").innerHTML="Password does not match\n";
+}
+document.getElementById("yoyo").reset();
+}
+
+
+function showpass()
+{
+passwords=document.getElementById("passwords").value;
+check=document.getElementById("check");
+if(check.checked)
+{
+document.getElementById("show").innerHTML=passwords;
+}
+else if(!check.checked)
+{
+document.getElementById("show").innerHTML="";
+}
+}
+
+
+
+</script>
+</table>
+</form>
+</html>
