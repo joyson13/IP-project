@@ -26,17 +26,15 @@ $username = $_SESSION['username'];
 $password = $_SESSION['password'];
 
 $sql = "SELECT customer_id FROM customer WHERE username like '$username'and password like '$password';";
-$plan_id = (int)$_SESSION['plan'];
-if(($result = $conn->query($sql))->num_rows>0)
-{
-    $row = $result->fetch_assoc();
-    $customer_id = $row['customer_id'];
-    //$plan_id = $row['plan_id'];
+$plan_id = (int) $_SESSION['plan'];
+if (($result = $conn->query($sql))->num_rows > 0) {
+  $row = $result->fetch_assoc();
+  $customer_id = $row['customer_id'];
+  //$plan_id = $row['plan_id'];
 
-    $sql2 = "SELECT plan_duration FROM plan where plan_id like '$plan_id';";
-    if(($result2 = $conn->query($sql2))->num_rows>0)
-    {
-    $row2 = $result2->fetch_assoc(); 
+  $sql2 = "SELECT plan_duration FROM plan where plan_id like '$plan_id';";
+  if (($result2 = $conn->query($sql2))->num_rows > 0) {
+    $row2 = $result2->fetch_assoc();
     /*
     $duration = (int)$row2['plan_duration'];
     $joining_date = date('Y-m-d');
@@ -46,16 +44,9 @@ if(($result = $conn->query($sql))->num_rows>0)
     echo gettype($expiry_date1);
     */
     $sql1 = "INSERT INTO customer_payment(customer_id,plan_id,payment_date) VALUES ('$customer_id','$plan_id',NOW());";
-    if($conn->query($sql1)===TRUE)
-    {   
-        include("paymentmail.php");
-        header("location:login.php");
+    if ($conn->query($sql1) === TRUE) {
+      include("paymentmail.php");
+      header("location:login.php");
     }
   }
 }
-
-
-
-
-
-?>

@@ -16,5 +16,3 @@ if(($result=$conn->query($sql))->num_rows>0)
     mail($customer_email,$subject,$message);
 
 }
-
-?>

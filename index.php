@@ -532,5 +532,3 @@ if (select.addEventListener) {
 EOPAGEC;
 
 echo $pageContents;
-
-?>
