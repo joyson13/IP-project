@@ -175,7 +175,7 @@
         <label class="form-group"> Get Trainer </label><br>
         <input type="button" onclick="gettrainer()" value="Check available trainers" class="btn btn-primary py-3 px-5" style="color : #42c0fb;">
 
-        <div id="trainer-div">
+        <div id="trainer-div" name="trainer">
 
         </div><br><br>
 

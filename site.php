@@ -41,11 +41,11 @@
           <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
           <li class="nav-item"><a href="#coaches-section" class="nav-link"><span>Coaches</span></a></li>
           <li class="nav-item"><a href="#blog-section" class="nav-link"><span>Blog</span></a></li>
-          <li class="nav-item"><a href="login.php" class="nav-link"><span>Login &#9662;</span></a>
+          <li class="nav-item"><a href="#" class="nav-link"><span>Login &#9662;</span></a>
             <ul class="dropdown">
               <li><a href="userlogin.php">Users</a></li>
               <li><a href="trainer-login.php">Trainers</a></li>
-              <li><a href="AdminLogin">Admin</a></li>
+              <li><a href="AdminLogIn.php">Admin</a></li>
             </ul>
           </li>
           <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>

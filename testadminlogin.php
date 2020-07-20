@@ -6,14 +6,14 @@ include('mysqlconnection.php');
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: welcome.php");
+    header("location: adminwelcome.php");
     exit;
 }
 
 // Define variables and initialize with empty values
 $username = $_POST['username'];
 $password = $_POST['password'];
-$sql = "SELECT username, password FROM ADMINLOG WHERE username like '$username'and password like '$password';";
+$sql = "SELECT username, password FROM adminlog WHERE username like '$username'and password like '$password';";
 
 if (($result = $conn->query($sql))->num_rows == 1) {
     $row = $result->fetch_assoc();

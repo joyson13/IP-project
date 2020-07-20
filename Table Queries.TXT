@@ -1,14 +1,9 @@
-
-
-
-
 CREATE TABLE `branch` (
  `branch_id` int(200) NOT NULL AUTO_INCREMENT,
  `branch_city` varchar(200) DEFAULT NULL,
  `branch_address` varchar(200) DEFAULT NULL,
  PRIMARY KEY (`branch_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1
-
 
 CREATE TABLE `plan` (
  `plan_id` int(200) NOT NULL AUTO_INCREMENT,
@@ -18,16 +13,11 @@ CREATE TABLE `plan` (
  PRIMARY KEY (`plan_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1
 
-
-
-
 CREATE TABLE `timeslot` (
  `timeslot_id` int(200) NOT NULL AUTO_INCREMENT,
  `time_slot` varchar(200) DEFAULT NULL,
  PRIMARY KEY (`timeslot_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1
-
-
 
 CREATE TABLE `trainer` (
  `trainer_id` int(200) NOT NULL AUTO_INCREMENT,
@@ -42,9 +32,6 @@ CREATE TABLE `trainer` (
  KEY `fk_branch` (`branch_id`),
  KEY `fk_timeslot` (`timesot_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1
-
-
-
 
 CREATE TABLE `customer` (
  `customer_id` int(200) NOT NULL AUTO_INCREMENT,
