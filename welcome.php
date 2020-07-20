@@ -111,7 +111,7 @@
           $plan_duration = $_SESSION['plan_duration'];
 
 
-          $expiry_date = date('Y-m-d', strtotime($payment_date . '+' . $plan_duration . ' month'));
+          $expiry_date = date('Y-m-d', strtotime($payment_date.'+'.$plan_duration .' month'));
           $todays_date = date('Y-m-d');
 
           if ($todays_date == $expiry_date) {

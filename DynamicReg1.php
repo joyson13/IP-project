@@ -163,7 +163,7 @@
 
             while ($row = $result->fetch_assoc()) {
 
-              echo "<li class='radio'><input name='plan' value=" . $row['plan_id'] . "  type='radio' class='userRatings'  > <label>" . $row['plan_duration'] . " month &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $row['plan_fee'] . "/-</label></li>";
+              echo "<li class='radio'><input name='plan' value=" . $row['plan_id'] . "  type='radio' class='userRatings'  > <label>" . $row['plan_duration'] . " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . $row['plan_fee'] . "/-</label></li>";
             }
 
             echo "</ul>";
@@ -279,7 +279,6 @@
 
           }
         };
-        obj.open("GET", url, true);
         obj.open("GET", url, true);
         obj.send();
       }

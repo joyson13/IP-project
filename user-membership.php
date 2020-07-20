@@ -83,7 +83,7 @@
           <p>Plan Fee : Rs <?php echo $_SESSION['plan_fee']; ?></p>
           <br>
 
-          <p>Plan Duration : <?php echo $_SESSION['plan_duration'] . " months"; ?></p>
+          <p>Plan Duration : <?php echo $_SESSION['plan_duration']; ?></p>
           <br>
 
           <p>Plan End : <?php
